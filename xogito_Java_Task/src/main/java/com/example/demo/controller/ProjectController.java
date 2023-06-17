@@ -58,7 +58,7 @@ public class ProjectController {
         }
     }
 
-    @GetMapping("/get/{name")
+    @GetMapping("/get/{name}")
     public ResponseEntity <Object> getProjectById(@PathVariable String name) {
         try {
             return ResponseEntity.ok(projectService.getProjectByName(name));
