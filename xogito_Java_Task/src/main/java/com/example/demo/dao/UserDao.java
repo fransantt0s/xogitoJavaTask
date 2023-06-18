@@ -10,10 +10,10 @@ import java.util.List;
 import java.util.Optional;
 
 public interface UserDao extends JpaRepository <User,Long>{
-    @Query(value = "SELECT * FROM USER WHERE EMAIL = ?1", nativeQuery = true)
+    @Query(value = "SELECT * FROM USER_TABLE WHERE EMAIL = ?1", nativeQuery = true)
     Optional<User> findByEmail(String email);
 
-    @Query(value = "SELECT * FROM USER WHERE NAME = ?1", nativeQuery = true)
+    @Query(value = "SELECT * FROM USER_TABLE WHERE NAME = ?1", nativeQuery = true)
     List<User> findByName(String name);
 
 

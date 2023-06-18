@@ -48,7 +48,7 @@ public class UserController {
         }
     }
 
-    @GetMapping("/get/{id}")
+    @GetMapping("/get/id/{id}")
     public ResponseEntity <Object> getUserById(@PathVariable Long id) {
         try {
             return ResponseEntity.ok(userService.getUserById(id));
@@ -59,7 +59,7 @@ public class UserController {
         }
     }
 
-    @GetMapping("/get/{name}")
+    @GetMapping("/get/name/{name}")
     public ResponseEntity <Object> getUserByName(@PathVariable String name) {
         try {
             return ResponseEntity.ok(userService.getUserByName(name));
@@ -70,8 +70,8 @@ public class UserController {
         }
     }
 
-    @GetMapping("/get/{email}")
-    public ResponseEntity <Object> getUserByEmail(@PathVariable String email) {
+    @GetMapping("/get/email")
+    public ResponseEntity <Object> getUserByEmail(@RequestParam String email) {
         try {
             return ResponseEntity.ok(userService.getUserByEmail(email));
         }

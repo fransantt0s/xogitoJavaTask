@@ -47,7 +47,7 @@ public class ProjectController {
         }
     }
 
-    @GetMapping("/get/{id}")
+    @GetMapping("/get/id/{id}")
     public ResponseEntity <Object> getProjectById(@PathVariable Long id) {
         try {
             return ResponseEntity.ok(projectService.getProjectById(id));
@@ -58,8 +58,8 @@ public class ProjectController {
         }
     }
 
-    @GetMapping("/get/{name}")
-    public ResponseEntity <Object> getProjectById(@PathVariable String name) {
+    @GetMapping("/get/name/{name}")
+    public ResponseEntity <Object> getProjectByName(@PathVariable String name) {
         try {
             return ResponseEntity.ok(projectService.getProjectByName(name));
         }
@@ -81,7 +81,7 @@ public class ProjectController {
         }
     }
 
-    @RequestMapping(value = "/{idProject}/{idUser}",method = {RequestMethod.GET,RequestMethod.PUT},consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/{idProject}/{idUser}",method = {RequestMethod.GET,RequestMethod.PUT})
     public ResponseEntity <Object> assignUserToProject(@PathVariable Long idProject, @PathVariable Long idUser) {
         try {
             return ResponseEntity.ok(projectService.assignUser(idProject,idUser));

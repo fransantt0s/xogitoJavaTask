@@ -11,6 +11,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.Arrays;
 import java.util.List;
 
 @Service
@@ -65,7 +66,7 @@ public class ProjectServiceImpl implements ProjectService {
     public String assignUser(Long  idProject,Long idUser) {
         Project project = projectDao.findById(idProject).orElse(null);
         User user = userDao.findById(idUser).orElse(null);
-        if(!projectDao.findAll().contains(project) || !userDao.findAll().contains(user)) {
+        if(project == null || user == null) {
             throw new RuntimeException("You cannot assign the user because the project or the user does not exist");
         }
         List <User> assignedUsers = project.getAssignedUser();

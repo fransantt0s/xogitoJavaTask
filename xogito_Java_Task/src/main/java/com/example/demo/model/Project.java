@@ -5,14 +5,13 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
 
 @Data
 @ToString
-@NoArgsConstructor
-@AllArgsConstructor
 @Entity
 public class Project {
     @Id
@@ -28,5 +27,15 @@ public class Project {
     private List <User> assignedUser;
     private String name;
     private String description;
+
+    public Project(Long id, List<User> assignedUser, String name, String description) {
+        this.id = id;
+        this.assignedUser = assignedUser;
+        this.name = name;
+        this.description = description;
+        this.assignedUser = new ArrayList<>();
+    }
+    public Project() {
+    }
 
 }
