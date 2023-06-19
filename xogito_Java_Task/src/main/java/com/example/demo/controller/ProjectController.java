@@ -64,7 +64,7 @@ public class ProjectController {
         }
         catch (Exception e) {
             e.printStackTrace();
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("The project was not found");
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("The project was not found");
         }
     }
 
@@ -76,7 +76,7 @@ public class ProjectController {
         }
         catch (Exception e) {
             e.printStackTrace();
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("The project was not found");
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("The project was not found");
         }
     }
 

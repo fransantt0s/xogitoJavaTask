@@ -61,7 +61,7 @@ public class UserController {
             return ResponseEntity.ok(userService.getUserById(id));
         } catch (Exception e) {
             e.printStackTrace();
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("The user was not found");
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("The user was not found");
         }
     }
 
@@ -72,7 +72,7 @@ public class UserController {
             return ResponseEntity.ok(userService.getUserByName(name));
         } catch (Exception e) {
             e.printStackTrace();
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("The users were not found");
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("The users were not found");
         }
     }
 
@@ -83,7 +83,7 @@ public class UserController {
             return ResponseEntity.ok(userService.getUserByEmail(email));
         } catch (Exception e) {
             e.printStackTrace();
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
     }
 
