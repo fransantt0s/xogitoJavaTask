@@ -1,12 +1,13 @@
 Xogito Java Task
-
+---------------------
 API SPECS:
 
-JAVA:JDK17
+  JAVA:JDK17
 
-MAVEN:3.6.3
+  MAVEN:3.6.3
 
-Spring Version:3.1.0
+  Spring Version:3.1.0
+----------------------------------------------------------
 
 The api is running in port 8002
 This api has H2 database configured, so you don't have to run any dump or SQL script,
