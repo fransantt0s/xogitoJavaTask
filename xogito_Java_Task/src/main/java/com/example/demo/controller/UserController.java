@@ -44,7 +44,7 @@ public class UserController {
     }
 
     @ApiOperation("delete a user by id")
-    @RequestMapping(value = "/delete/{id}", method = {RequestMethod.GET, RequestMethod.DELETE})
+    @RequestMapping(value = "/delete/{id}", method = {RequestMethod.DELETE})
     public ResponseEntity<Object> deleteUserById(@PathVariable Long id) {
         try {
             return ResponseEntity.ok(userService.deleteUser(id));

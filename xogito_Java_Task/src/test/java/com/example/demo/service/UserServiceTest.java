@@ -1,6 +1,8 @@
 package com.example.demo.service;
 
+import com.example.demo.dao.ProjectDao;
 import com.example.demo.dao.UserDao;
+import com.example.demo.model.Project;
 import com.example.demo.model.User;
 import com.example.demo.service.impl.UserServiceImpl;
 import org.junit.jupiter.api.BeforeEach;
@@ -25,12 +27,14 @@ public class UserServiceTest {
     private User user1;
     private User user2;
     private User user3;
+    private ProjectDao projectDao;
     private List<User> users;
 
     @BeforeEach
     void setUp(){
         userDao = mock(UserDao.class);
-        userService = new UserServiceImpl(userDao);
+        projectDao = mock(ProjectDao.class);
+        userService = new UserServiceImpl(userDao,projectDao);
         user1 = mock(User.class);
         user2 = mock(User.class);
         user3 = mock(User.class);
@@ -58,6 +62,8 @@ public class UserServiceTest {
     @Test
     void testDeleteUserShouldReturnAString(){
         userService.saveUser(user1);
+        List<Project> projects = new ArrayList<>();
+        when(projectDao.findAll()).thenReturn(projects);
         when(user1.getId()).thenReturn(1L);
         when(userDao.findById(1L)).thenReturn(Optional.of(user1));
         userService.deleteUser(1L);

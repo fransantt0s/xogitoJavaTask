@@ -1,6 +1,8 @@
 package com.example.demo.service.impl;
 
+import com.example.demo.dao.ProjectDao;
 import com.example.demo.dao.UserDao;
+import com.example.demo.model.Project;
 import com.example.demo.model.User;
 import com.example.demo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,15 +11,18 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class UserServiceImpl implements UserService {
 
     private UserDao userDao;
+    private ProjectDao projectDao;
 
     @Autowired
-    public UserServiceImpl(UserDao userDao) {
+    public UserServiceImpl(UserDao userDao, ProjectDao projectDao) {
         this.userDao = userDao;
+        this.projectDao = projectDao;
     }
 
 
@@ -34,6 +39,16 @@ public class UserServiceImpl implements UserService {
         User user = userDao.findById(id).orElse(null);
         if(user == null){
             throw  new RuntimeException("The user which you are trying to delete does not exist");
+        }
+        List <Project> projects = projectDao.findAll();
+        List <Project> projectsFiltered = projects.stream().filter(project -> project.getAssignedUsers().contains(user))
+                .collect(Collectors.toList());
+        if(!projectsFiltered.isEmpty()){
+            for (Project project:projectsFiltered){
+                List <User> usersAssigned = project.getAssignedUsers();
+                usersAssigned.remove(user);
+                project.setAssignedUsers(usersAssigned);
+            }
         }
         userDao.delete(user);
         return "The user was deleted";

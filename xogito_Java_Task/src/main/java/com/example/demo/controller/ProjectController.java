@@ -45,7 +45,7 @@ public class ProjectController {
     }
 
     @ApiOperation("Delete project by id")
-    @RequestMapping(value = "/delete/{id}",method = {RequestMethod.GET,RequestMethod.DELETE})
+    @RequestMapping(value = "/delete/{id}",method = {RequestMethod.DELETE})
     public ResponseEntity <Object> deleteProjectById(@PathVariable Long id){
         try {
             return ResponseEntity.ok(projectService.deleteProject(id));
@@ -102,7 +102,7 @@ public class ProjectController {
     }
 
     @ApiOperation("Assign a user to a project")
-    @RequestMapping(value = "/{idProject}/{idUser}",method = {RequestMethod.GET,RequestMethod.PUT})
+    @RequestMapping(value = "/{idProject}/{idUser}",method = {RequestMethod.PUT})
     public ResponseEntity <Object> assignUserToProject(@PathVariable Long idProject, @PathVariable Long idUser) {
         try {
             return ResponseEntity.ok(projectService.assignUser(idProject,idUser));
