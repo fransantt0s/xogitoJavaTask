@@ -9,16 +9,12 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
-
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.*;
-
-
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -26,13 +22,10 @@ public class UserServiceTest {
 
     private UserService userService;
     private UserDao userDao;
-
     private User user1;
     private User user2;
     private User user3;
-
     private List<User> users;
-
 
     @BeforeEach
     void setUp(){
@@ -81,7 +74,6 @@ public class UserServiceTest {
         verify(userDao).findById(1L);
     }
 
-
     @Test
     void testGetUserByName(){
         when(user1.getName()).thenReturn("John");
@@ -94,7 +86,6 @@ public class UserServiceTest {
         assertEquals(2,userService.getUserByName("John").size());
     }
 
-
     @Test
     void testGetUserByEmail(){
         when(user1.getEmail()).thenReturn("john@gmail.com");
@@ -104,11 +95,5 @@ public class UserServiceTest {
         assertEquals(user1,userService.getUserByEmail("john@gmail.com"));
         verify(userDao).findByEmail("john@gmail.com");
     }
-
-
-
-
-
-
 
 }

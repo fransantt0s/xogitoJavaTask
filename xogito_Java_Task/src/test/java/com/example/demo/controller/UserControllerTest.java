@@ -6,6 +6,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -17,11 +18,9 @@ import static org.mockito.Mockito.*;
 public class UserControllerTest {
     private UserService userService;
     private UserController userController;
-
     private User user1;
     private User user2;
     private User user3;
-
     private List<User> users;
 
 
@@ -83,11 +82,11 @@ public class UserControllerTest {
 
     }
 
-
     @Test
     void testAddUserShouldReturn200HttpStatusCode(){
         User user4 = mock(User.class);
-        ResponseEntity response = userController.saveUser(user4);
+        BindingResult bindingResult = mock(BindingResult.class);
+        ResponseEntity response = userController.saveUser(user4,bindingResult);
         assertThat(response,notNullValue());
         assertThat(response.getStatusCode(),equalTo(HttpStatus.CREATED));
     }

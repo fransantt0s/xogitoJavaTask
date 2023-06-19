@@ -1,5 +1,4 @@
 package com.example.demo.service.impl;
-
 import com.example.demo.dao.ProjectDao;
 import com.example.demo.dao.UserDao;
 import com.example.demo.model.Project;
@@ -10,8 +9,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-
-import java.util.Arrays;
 import java.util.List;
 
 @Service
@@ -24,7 +21,6 @@ public class ProjectServiceImpl implements ProjectService {
         this.projectDao = projectDao;
         this.userDao = userDao;
     }
-
 
     @Override
     public List<Project> getAllProjects(Integer pageNumber, Integer pageSize) {
@@ -69,9 +65,9 @@ public class ProjectServiceImpl implements ProjectService {
         if(project == null || user == null) {
             throw new RuntimeException("You cannot assign the user because the project or the user does not exist");
         }
-        List <User> assignedUsers = project.getAssignedUser();
+        List <User> assignedUsers = project.getAssignedUsers();
         assignedUsers.add(user);
-        project.setAssignedUser(assignedUsers);
+        project.setAssignedUsers(assignedUsers);
         projectDao.save(project);
         return "The user was assigned to the project";
     }

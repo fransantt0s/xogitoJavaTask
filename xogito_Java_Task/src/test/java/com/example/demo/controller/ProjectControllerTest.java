@@ -7,10 +7,10 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
 import static org.mockito.Mockito.*;
@@ -43,7 +43,7 @@ public class ProjectControllerTest {
         projectService = mock(ProjectService.class);
         projectController = new ProjectController(projectService);
         project1 = mock(Project.class);
-        when(project1.getAssignedUser()).thenReturn(users);
+        when(project1.getAssignedUsers()).thenReturn(users);
         project2 = mock(Project.class);
         project3 = mock(Project.class);
         projects = new ArrayList<>();
@@ -87,7 +87,8 @@ public class ProjectControllerTest {
     @Test
     void testAddProjectShouldReturn200HttpStatusCode(){
         Project project4 = mock(Project.class);
-        ResponseEntity response = projectController.saveProject(project4);
+        BindingResult bindingResult = mock(BindingResult.class);
+        ResponseEntity response = projectController.saveProject(project4,bindingResult);
         assertThat(response,notNullValue());
         assertThat(response.getStatusCode(),equalTo(HttpStatus.CREATED));
     }

@@ -4,12 +4,9 @@ import com.example.demo.model.User;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
-import org.springframework.boot.test.context.SpringBootTest;
-
 import java.util.List;
 
 import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
 
 @DataJpaTest
 public class UserDaoTest {
@@ -26,6 +23,8 @@ public class UserDaoTest {
     @Test
     public void testSave() {
         User user = new User();
+        user.setEmail("john55@gmail.com");
+        user.setName("john");
         User savedUser = userDao.save(user);
         assertNotNull(savedUser);
 
@@ -34,6 +33,8 @@ public class UserDaoTest {
     @Test
     public void deleteUser() {
         User user = new User();
+        user.setEmail("john333@gmail.com");
+        user.setName("john");
         User savedUser = userDao.save(user);
         userDao.delete(savedUser);
         assert(!userDao.findAll().contains(user));

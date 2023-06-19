@@ -1,6 +1,5 @@
 package com.example.demo.service;
 
-import com.example.demo.controller.UserController;
 import com.example.demo.dao.ProjectDao;
 import com.example.demo.dao.UserDao;
 import com.example.demo.model.Project;
@@ -12,16 +11,9 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
-
 import java.util.*;
-
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.*;
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.*;
-
-
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -29,21 +21,15 @@ public class ProjectServiceTest {
 
     private ProjectService projectService;
     private ProjectDao projectDao;
-
     private UserDao userDao;
-
     private Project project1;
     private Project project2;
     private Project project3;
-
     private User user1;
     private User user2;
     private User user3;
-
     private List<User> users;
-
     private List<Project> projects;
-
 
     @BeforeEach
     void setUp(){
@@ -109,7 +95,6 @@ public class ProjectServiceTest {
         verify(projectDao).findProjectByName("Visa");
     }
 
-
     @Test
     void testAssignUserToProject(){
         when(project2.getId()).thenReturn(2L);
@@ -125,8 +110,7 @@ public class ProjectServiceTest {
         verify(userDao, times(2)).findById(2L);
         verify(projectDao, times(2)).save(project2);
     }
-
-    }
+}
 
 
 

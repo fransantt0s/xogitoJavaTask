@@ -1,4 +1,3 @@
-
 package com.example.demo.dao;
 
 import com.example.demo.model.Project;
@@ -21,18 +20,20 @@ public class ProjectDaoTest {
 
     @Test
     public void testSave() {
-        Project Project = new Project();
-        Project savedProject = projectDao.save(Project);
+        Project project = new Project();
+        project.setName("Visa");
+        Project savedProject = projectDao.save(project);
         assertNotNull(savedProject);
 
     }
 
     @Test
     public void deleteProject() {
-        Project Project = new Project();
-        Project savedProject = projectDao.save(Project);
+        Project project = new Project();
+        project.setName("Visa");
+        Project savedProject = projectDao.save(project);
         projectDao.delete(savedProject);
-        assert(!projectDao.findAll().contains(Project));
+        assert(!projectDao.findAll().contains(project));
     }
 
     @Test
