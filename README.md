@@ -1,8 +1,11 @@
 Xogito Java Task
 
 API SPECS:
+
 JAVA:JDK17
+
 MAVEN:3.6.3
+
 Spring Version:3.1.0
 
 The api is running in port 8002
