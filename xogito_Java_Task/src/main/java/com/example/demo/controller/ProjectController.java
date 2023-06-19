@@ -2,6 +2,8 @@ package com.example.demo.controller;
 
 import com.example.demo.model.Project;
 import com.example.demo.service.ProjectService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import jakarta.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,6 +18,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/projects")
+@Api(tags = "Xogito API")
 public class ProjectController {
 
     private static final Logger logger = LoggerFactory.getLogger(UserController.class);
@@ -27,6 +30,7 @@ public class ProjectController {
         this.projectService = projectService;
     }
 
+    @ApiOperation("Get all projects")
     @GetMapping("/all")
     public ResponseEntity<List<Project>> getAllProjects(
             @RequestParam(defaultValue = "0") int pageNumber,
@@ -40,7 +44,7 @@ public class ProjectController {
         }
     }
 
-
+    @ApiOperation("Delete project by id")
     @RequestMapping(value = "/delete/{id}",method = {RequestMethod.GET,RequestMethod.DELETE})
     public ResponseEntity <Object> deleteProjectById(@PathVariable Long id){
         try {
@@ -52,6 +56,7 @@ public class ProjectController {
         }
     }
 
+    @ApiOperation("Get project by id")
     @GetMapping("/get/id/{id}")
     public ResponseEntity <Object> getProjectById(@PathVariable Long id) {
         try {
@@ -63,6 +68,7 @@ public class ProjectController {
         }
     }
 
+    @ApiOperation("Get project by name")
     @GetMapping("/get/name/{name}")
     public ResponseEntity <Object> getProjectByName(@PathVariable String name) {
         try {
@@ -74,6 +80,7 @@ public class ProjectController {
         }
     }
 
+    @ApiOperation("Save a new project")
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity <Object> saveProject(@Valid @RequestBody Project project, BindingResult bindingResult) {
         if(bindingResult.hasErrors()){
@@ -94,6 +101,7 @@ public class ProjectController {
         }
     }
 
+    @ApiOperation("Assign a user to a project")
     @RequestMapping(value = "/{idProject}/{idUser}",method = {RequestMethod.GET,RequestMethod.PUT})
     public ResponseEntity <Object> assignUserToProject(@PathVariable Long idProject, @PathVariable Long idUser) {
         try {
